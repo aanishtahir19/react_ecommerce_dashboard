@@ -18,7 +18,9 @@ function Layout() {
     <div>
       <div
         onMouseOver={() => cycleNav(true)}
-        onMouseLeave={() => cycleNav(false)}
+        onMouseLeave={() => {
+          cycleNav(false);
+        }}
         className={`${
           navOpen ? 'w-[288px]' : `w-[80px]`
         } transition-all duration-500 h-screen sidebar_gradient rounded-r-lg p-4 text-white`}
@@ -39,7 +41,7 @@ function Layout() {
           <div
             className={`relative ${
               navOpen ? 'w-12 h-12' : 'w-8 h-8'
-            }  mx-auto mb-1  overflow-hidden rounded-xl`}
+            } transition-all duration-500 mx-auto mb-1  overflow-hidden rounded-xl`}
           >
             <Image
               src='https://acorn-react-ecommerce-platform.coloredstrategies.com/img/profile/profile-9.webp'
@@ -49,19 +51,35 @@ function Layout() {
               priority={true}
             />
           </div>
-          {navOpen && <p className='text-center text-sm'> Lisa Jackson</p>}
+          <div className='h-8'>
+            <p
+              className={`text-center text-sm ml-4 transition-all duration-500 ${
+                navOpen ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              Lisa Jackson
+            </p>
+          </div>
+
+          {/* {navOpen && <p className='text-center text-sm'> Lisa Jackson</p>} */}
         </div>
         {/* Nav Items */}
-        <div className='  overflow-y-auto h-[35rem] styledScroll my-8'>
+        <div className='  overflow-y-auto overflow-x-hidden h-[35rem] styledScroll my-8'>
           <nav className=' '>
             <ul className='flex flex-col '>
               <li className=''>
                 <a className='p-3 mb-3 block hover:bg-white/10 rounded-md transition ease-linear duration-300 cursor-pointer'>
                   <div className='flex items-center'>
-                    <span className='w-5 flex '>
+                    <span className='w-5 h-5 flex '>
                       <FontAwesomeIcon icon={faStore} />
                     </span>
-                    {navOpen && <span className='ml-4'>Dashboard</span>}
+                    <span
+                      className={`ml-4 transition-all duration-500 ${
+                        navOpen ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      Dashboard
+                    </span>
                   </div>
                 </a>
               </li>
@@ -74,17 +92,23 @@ function Layout() {
                 >
                   <div className='flex justify-between'>
                     <div className='flex items-center'>
-                      <span className='w-5 flex '>
+                      <span className='w-5 h-5 flex '>
                         <FontAwesomeIcon icon={faStore} />
                       </span>
 
-                      {navOpen && <span className='ml-4'>Products</span>}
+                      <span
+                        className={`ml-4 transition-all duration-500 ${
+                          navOpen ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        Products
+                      </span>
                     </div>
                     {navOpen && (
                       <span className='text-white'>
                         <i
                           className={`text-white arrow  ${
-                            openOrders ? 'down' : 'right'
+                            openProducts ? 'down' : 'right'
                           }`}
                         ></i>
                       </span>
@@ -123,11 +147,17 @@ function Layout() {
                 >
                   <div className='flex justify-between'>
                     <div className='flex items-center'>
-                      <span className='w-5 flex '>
+                      <span className='w-5 h-5 flex '>
                         <FontAwesomeIcon icon={faStore} />
                       </span>
 
-                      {navOpen && <span className='ml-4'>Orders</span>}
+                      <span
+                        className={`ml-4 transition-all duration-500 ${
+                          navOpen ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        Orders
+                      </span>
                     </div>
                     {navOpen && (
                       <span className='text-white'>
@@ -166,11 +196,17 @@ function Layout() {
                 >
                   <div className='flex justify-between'>
                     <div className='flex items-center'>
-                      <span className='w-5 flex '>
+                      <span className='w-5 h-5 flex '>
                         <FontAwesomeIcon icon={faStore} />
                       </span>
 
-                      {navOpen && <span className='ml-4'>Customers</span>}
+                      <span
+                        className={`ml-4 transition-all duration-500 ${
+                          navOpen ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        Customers
+                      </span>
                     </div>
                     {navOpen && (
                       <span className='text-white'>
@@ -209,11 +245,17 @@ function Layout() {
                 >
                   <div className='flex justify-between'>
                     <div className='flex items-center'>
-                      <span className='w-5 flex '>
+                      <span className='w-5 h-5 flex '>
                         <FontAwesomeIcon icon={faStore} />
                       </span>
 
-                      {navOpen && <span className='ml-4'>Store</span>}
+                      <span
+                        className={`ml-4 transition-all duration-500 ${
+                          navOpen ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        Store
+                      </span>
                     </div>
                     {navOpen && (
                       <span className='text-white'>
@@ -272,10 +314,16 @@ function Layout() {
                 <li className=''>
                   <a className='p-3 mb-3 block hover:bg-white/10 rounded-md transition ease-linear duration-300 cursor-pointer'>
                     <div className='flex items-center'>
-                      <span className='w-5 flex '>
+                      <span className='w-5 h-5 flex '>
                         <FontAwesomeIcon icon={faStore} />
                       </span>
-                      {navOpen && <span className='ml-4'>Shipping</span>}
+                      <span
+                        className={`ml-4 transition-all duration-500 ${
+                          navOpen ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        Shipping
+                      </span>
                     </div>
                   </a>
                 </li>
@@ -284,10 +332,16 @@ function Layout() {
                 <li className=''>
                   <a className='p-3 mb-3 block hover:bg-white/10 rounded-md transition ease-linear duration-300 cursor-pointer'>
                     <div className='flex items-center'>
-                      <span className='w-5 flex '>
+                      <span className='w-5 h-5 flex '>
                         <FontAwesomeIcon icon={faStore} />
                       </span>
-                      {navOpen && <span className='ml-4'>Discount</span>}
+                      <span
+                        className={`ml-4 transition-all duration-500 ${
+                          navOpen ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        Discount
+                      </span>
                     </div>
                   </a>
                 </li>
@@ -296,7 +350,7 @@ function Layout() {
                 <li className=''>
                   <a className='p-3 mb-3 block hover:bg-white/10 rounded-md transition ease-linear duration-300 cursor-pointer'>
                     <div className='flex items-center'>
-                      <span className='w-5 flex '>
+                      <span className='w-5 h-5 flex '>
                         <FontAwesomeIcon icon={faStore} />
                       </span>
                       {navOpen && <span className='ml-4'>Setting</span>}
