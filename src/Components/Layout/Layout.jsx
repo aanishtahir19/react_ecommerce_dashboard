@@ -2,20 +2,28 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useCycle } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStore } from '@fortawesome/free-solid-svg-icons';
-function Layout() {
+import {
+  faStore,
+  faMagnifyingGlass,
+  faLock,
+  faUnlock,
+  faLightbulb,
+  faBell,
+} from '@fortawesome/free-solid-svg-icons';
+function Layout({ children }) {
   const [openProducts, cycleProducts] = useCycle(false, true);
   const [openOrders, cycleOrders] = useCycle(false, true);
   const [openCustomers, cycleCustomers] = useCycle(false, true);
   const [openStore, cycleStore] = useCycle(false, true);
   const [navOpen, cycleNav] = useState(false);
+  const [navfixed, cycleNavfixed] = useCycle(false);
   const subMenu = {
     overflow: 'hidden',
     height: openProducts ? '120px' : 0,
     transition: '0.5s',
   };
   return (
-    <div>
+    <div className='flex flex-row'>
       <div
         onMouseOver={() => cycleNav(true)}
         onMouseLeave={() => {
@@ -23,7 +31,9 @@ function Layout() {
         }}
         className={`${
           navOpen ? 'w-[288px]' : `w-[80px]`
-        } transition-all duration-500 h-screen sidebar_gradient rounded-r-lg p-4 text-white`}
+        } transition-all duration-500 h-screen sidebar_gradient rounded-r-lg p-4 text-white ${
+          navfixed ? 'fixed' : ''
+        }`}
       >
         {/* Logo */}
         <div className='w-36 h-9 relative mx-auto mb-8'>
@@ -51,7 +61,7 @@ function Layout() {
               priority={true}
             />
           </div>
-          <div className='h-8'>
+          <div className='h-8 mb-2'>
             <p
               className={`text-center text-sm ml-4 transition-all duration-500 ${
                 navOpen ? 'opacity-100' : 'opacity-0'
@@ -60,7 +70,23 @@ function Layout() {
               Lisa Jackson
             </p>
           </div>
-
+          <div className='flex flex-row justify-center'>
+            <span className='w-4 h-6 mx-2'>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </span>
+            <span
+              className='w-4 h-4 mx-2 cursor-pointer'
+              onClick={cycleNavfixed}
+            >
+              <FontAwesomeIcon icon={faLock} />
+            </span>
+            <span className='w-4 h-4 mx-2'>
+              <FontAwesomeIcon icon={faLightbulb} />
+            </span>
+            <span className='w-4 h-4 mx-2'>
+              <FontAwesomeIcon icon={faBell} />
+            </span>
+          </div>
           {/* {navOpen && <p className='text-center text-sm'> Lisa Jackson</p>} */}
         </div>
         {/* Nav Items */}
@@ -362,6 +388,7 @@ function Layout() {
           </nav>
         </div>
       </div>
+      {children}
     </div>
   );
 }
